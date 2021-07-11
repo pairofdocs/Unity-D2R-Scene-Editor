@@ -21,15 +21,20 @@ public class saveJson : MonoBehaviour
         public float x;
         public float y;
         public float z;
-        // can add rotation x,y,z here
+        // quaternion rotation x,y,z,w
+        public float qx;
+        public float qy;
+        public float qz;
+        public float qw;
 
-        public NameAndCoord(string namein, string filepathin, float xin, float yin, float zin)
+        public NameAndCoord(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin)
         {
             this.name = namein;
             this.filepath = filepathin;
             this.x = xin;
             this.y = yin;
             this.z = zin;
+            this.qx = qxin; this.qy = qyin; this.qz = qzin; this.qw = qwin;
         }
     }
     // structs added to list.  https://answers.unity.com/questions/996317/how-add-values-to-genericlist.html
@@ -66,10 +71,10 @@ public class saveJson : MonoBehaviour
         {
             // this.namecoords = new Dictionary<string, float[]>();
         }
-        public void AddNameCoords(string namein, string filepathin, float xin, float yin, float zin)
+        public void AddNameCoords(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin)
         {
             NameAndCoord coordin;
-            coordin = new NameAndCoord(namein, filepathin, xin, yin, zin);
+            coordin = new NameAndCoord(namein, filepathin, xin, yin, zin, qxin, qyin, qzin, qwin);
             this.namecoords.Add(coordin);
         }
     }
@@ -126,11 +131,20 @@ public class saveJson : MonoBehaviour
             dockObj.transform.position = new Vector3(-1*ob.x, ob.y, ob.z);
             dockObj.AddComponent<SelectionBaseObject>();
 
+            // Quaternion rotation "orientation": {"x": 0, "y": 0.707, "z": 0, "w": 0.707},   https://docs.unity3d.com/ScriptReference/Quaternion.html
+            // https://answers.unity.com/questions/476128/how-to-change-quaternion-by-180-degrees.html
+            Quaternion quat = new Quaternion(ob.qx, -1*ob.qy, ob.qz, ob.qw);
+            // dockObj.transform.rotation = new Vector3(quat.eulerAngles.x, quat.eulerAngles.y, quat.eulerAngles.z);
+            dockObj.transform.rotation = quat;
+            Debug.Log("dockObj.transform.rotation.y:            " + dockObj.transform.rotation.y);   // This is stores as a quat, 0.7071068
+            
+
             // set filepath for the model file in D2R's data storage.    The filepath variable appears in the unity editor -> inspector (script component)
             // set from jsondata.namecoords[0].filepath
             // dockObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
             dockObj.GetComponent<SelectionBaseObject>().SetFilePath(ob.filepath);
             Debug.Log("fpath:            " + dockObj.GetComponent<SelectionBaseObject>().GetFilePath());
+
         }
 
         // var dockObj = Instantiate(Resources.Load("dock01")) as GameObject;
@@ -168,8 +182,8 @@ public class saveJson : MonoBehaviour
         for(int i = 0; i < gobjs.Length; i++) {
             if (gobjs[i].GetComponents<SelectionBaseObject>().Length != 0) {
                 Debug.Log("Contains SelectionBaseObj:                      " + i);    // Can check for lowercase name or another identifier (maybe selectionBaeObj)
-                // **NOTE** save objects with x--> -x, undoing the rendering orientation
-                jsondata2.AddNameCoords(gobjs[i].name, gobjs[i].GetComponent<SelectionBaseObject>().GetFilePath(), -1*gobjs[i].transform.position.x, gobjs[i].transform.position.y, gobjs[i].transform.position.z);
+                // **NOTE** save objects with x--> -x, undoing the rendering orientation.   also rotation/quat is y --> -y
+                jsondata2.AddNameCoords(gobjs[i].name, gobjs[i].GetComponent<SelectionBaseObject>().GetFilePath(), -1*gobjs[i].transform.position.x, gobjs[i].transform.position.y, gobjs[i].transform.position.z, gobjs[i].transform.rotation.x, -1*gobjs[i].transform.rotation.y, gobjs[i].transform.rotation.z, gobjs[i].transform.rotation.w);
             }
         }
         Debug.Log("looped through GameObjs:                 " + JsonUtility.ToJson(jsondata2));

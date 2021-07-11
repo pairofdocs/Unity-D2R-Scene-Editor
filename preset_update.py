@@ -43,7 +43,11 @@ def write_json_d2r():
         ent_dict['components'][1]['position']['x'] = el['x']
         ent_dict['components'][1]['position']['y'] = el['y']
         ent_dict['components'][1]['position']['z'] = el['z']
-        ### TODO: add rotation
+        ## quaternion rotation
+        ent_dict['components'][1]['orientation']['x'] = el['qx']
+        ent_dict['components'][1]['orientation']['y'] = el['qy']
+        ent_dict['components'][1]['orientation']['z'] = el['qz']
+        ent_dict['components'][1]['orientation']['w'] = el['qw']
 
         entities_list.append(ent_dict)
 
