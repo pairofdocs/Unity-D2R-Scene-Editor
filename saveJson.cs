@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // example from https://docs.unity3d.com/Manual/JSONSerialization.html
@@ -8,7 +9,9 @@ using UnityEngine;
 public class saveJson : MonoBehaviour
 {
     // get game objects from scene / hierarchy.  https://docs.unity3d.com/ScriptReference/GameObject.Find.html
-    public GameObject cube;
+    // public GameObject cube;
+    public CoordObjs jsondata;
+    public CoordObjs jsondata2;
     
     // custom class for list of coords for gameobjects (e.g. docks)
     [System.Serializable]
@@ -87,7 +90,7 @@ public class saveJson : MonoBehaviour
         string strdata = System.IO.File.ReadAllText(Application.dataPath + "/ex1.json");
         Debug.Log("strdata:              " + strdata);
 
-        CoordObjs jsondata = JsonUtility.FromJson<CoordObjs>(strdata);
+        jsondata = JsonUtility.FromJson<CoordObjs>(strdata);
         Debug.Log("json read from file ToJson:                 " + JsonUtility.ToJson(jsondata));
 
         // // This returns the GameObject named Hand. Hand must not have a parent in the Hierarchy view
@@ -115,7 +118,8 @@ public class saveJson : MonoBehaviour
         {
             var dockObj = Instantiate(Resources.Load("dock01")) as GameObject;        // TODO: specify model name to load
             dockObj.name = ob.name;
-            dockObj.transform.position = new Vector3(ob.x, ob.y, ob.z);
+            // **NOTE** render objects with x--> -x  since the orientation is like that in-game
+            dockObj.transform.position = new Vector3(-1*ob.x, ob.y, ob.z);
             dockObj.AddComponent<SelectionBaseObject>();
 
             // set filepath for the model file in D2R's data storage.    The filepath variable appears in the unity editor -> inspector (script component)
@@ -135,34 +139,51 @@ public class saveJson : MonoBehaviour
         // // dockObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
         // dockObj.GetComponent<SelectionBaseObject>().SetFilePath(jsondata.namecoords[0].filepath);
         // Debug.Log("fpath:            " + dockObj.GetComponent<SelectionBaseObject>().GetFilePath());
+      
 
-
-        // do for loop of json coord items and instantiate the dock models
+        // add button listener.  Set up button in scene.       https://www.tutorialspoint.com/unity/unity_the_button.htm  and https://forum.unity.com/threads/how-to-assign-onclick-for-ui-button-generated-in-runtime.358974/
+        // Button b = gameObject.GetComponent<Button>();
+        Button save = GameObject.Find("Button").GetComponent<Button>();
+        save.onClick.AddListener(SaveObjsToJson);
         
-
     }
 
-    // OnDisable is called when the GameObject is toggled - disabled (checkbox in the Inspector).  (MainCamera has the attached script saveJson.cs)
-    void OnDisable()
+    void SaveObjsToJson()
     {
-        // Debug.Log("PrintOnDisable: script was disabled");
-        // Debug.Log("Cube before saving: " + cube.transform.position);
-
+        Debug.Log("SaveObjsToJson() called ");
         // // save to file in D:/apps/Unity Projects/proj3d-1/Assets/
         // CoordObjs coords = new CoordObjs(cube.transform.position.x, cube.transform.position.y, cube.transform.position.z);
         // string coordsjson = JsonUtility.ToJson(coords);
         // System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", coordsjson);
 
-        // GameObject dockObj1 = GameObject.Find("/dock01_instantiated");
-        // Debug.Log("dockObj1 " + dockObj1.transform.position);
+        CoordObjs jsondata2 = new CoordObjs();
+        // TODO: loop through GameObjects in the heirarchy.  works when new docks/objs are added.    (and removed)
+        // https://answers.unity.com/questions/216985/find-game-objects-containing-string.html
+        
+        GameObject[] gobjs = (GameObject[])FindObjectsOfType(typeof(GameObject));
+        for(int i = 0; i < gobjs.Length; i++) {
+            if (gobjs[i].GetComponents<SelectionBaseObject>().Length != 0) {
+                Debug.Log("Contains SelectionBaseObj:                      " + i);    // Can check for lowercase name or another identifier (maybe selectionBaeObj)
+                // **NOTE** save objects with x--> -x, undoing the rendering orientation
+                jsondata2.AddNameCoords(gobjs[i].name, gobjs[i].GetComponent<SelectionBaseObject>().GetFilePath(), -1*gobjs[i].transform.position.x, gobjs[i].transform.position.y, gobjs[i].transform.position.z);
+            }
+        }
+        Debug.Log("looped through GameObjs:                 " + JsonUtility.ToJson(jsondata2));
 
+        // save current objects positions to json file
+        // Debug.Log("saving to file:                 " + JsonUtility.ToJson(jsondata2));
+        System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", JsonUtility.ToJson(jsondata2));
     }
-    // in Unity editor, I click "play" which loads the cube object position from my json. then "pause" which allows me to move my cube object.
-    // once I'm done moving and positioning the cube I can save the position to my json by unchecking (disabling) the camera  (disabling the cube works too. using camera disable has more accurate coords on save?)
+    // in Unity editor, I click "play" which loads the cube object position from my json. then "pause" which allows me to move my objects.
+    // once I'm done moving and positioning the cube I can save the position to my json by clicking the 'save' button
 
+    // OnDisable is called when the GameObject is toggled - disabled (checkbox in the Inspector).  (MainCamera has the attached script saveJson.cs)
+    void OnDisable()
+    {
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
