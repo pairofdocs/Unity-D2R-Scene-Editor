@@ -39,7 +39,7 @@ def write_json_d2r():
         # {'name': 'dock5', 'filepath': 'modelpath3', 'x': 212.10000610351562, 'y': -4.0, 'z': 136.89999389648438}
         ent_dict = copy.deepcopy(template_dock)
         ent_dict['name'] = el['name']
-        # ent_dict['components'][0]['filename'] = set correct filename/ from 'filepath' key
+        ent_dict['components'][0]['filename'] = el['filepath']
         ent_dict['components'][1]['position']['x'] = el['x']
         ent_dict['components'][1]['position']['y'] = el['y']
         ent_dict['components'][1]['position']['z'] = el['z']

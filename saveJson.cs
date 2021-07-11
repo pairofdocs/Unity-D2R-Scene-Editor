@@ -116,7 +116,11 @@ public class saveJson : MonoBehaviour
         // instantiate dock.   https://stackoverflow.com/questions/42489397/load-3d-object-in-unity-using-script
         foreach(NameAndCoord ob in jsondata.namecoords)
         {
-            var dockObj = Instantiate(Resources.Load("dock01")) as GameObject;        // TODO: specify model name to load
+            string modelfile; string[] strArr;
+            modelfile = ob.filepath;
+            strArr = modelfile.Split('/');     // NOTE:  use single quotes for char '/',  "/" is a string
+            // Debug.Log("StrArr[-1]:                  " + strArr[strArr.Length-1].Replace(".model",""));
+            var dockObj = Instantiate(Resources.Load(strArr[strArr.Length-1].Replace(".model",""))) as GameObject;
             dockObj.name = ob.name;
             // **NOTE** render objects with x--> -x  since the orientation is like that in-game
             dockObj.transform.position = new Vector3(-1*ob.x, ob.y, ob.z);
