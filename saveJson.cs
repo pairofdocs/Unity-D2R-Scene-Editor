@@ -8,8 +8,6 @@ using UnityEngine.UI;
 [SelectionBaseAttribute]
 public class saveJson : MonoBehaviour
 {
-    // get game objects from scene / hierarchy.  https://docs.unity3d.com/ScriptReference/GameObject.Find.html
-    // public GameObject cube;
     public CoordObjs jsondata;
     public CoordObjs jsondata2;
     
@@ -38,35 +36,14 @@ public class saveJson : MonoBehaviour
         }
     }
     // structs added to list.  https://answers.unity.com/questions/996317/how-add-values-to-genericlist.html
+    // class                   https://learn.unity.com/tutorial/classes-5#5c8a695cedbc2a067d475193
 
     [System.Serializable]
     public class CoordObjs
     {
-        // var accounts = new Dictionary<string, double>();
-        // public Dictionary<string, GameObject> dictio = new Dictionary<string, GameObject>();
-        // public Dictionary<string, float[]> namecoords = new Dictionary<string, float[]>();
-        // public string name;
-        // public float[] coords;
         // array has a fixed size. list can be resized
         public List<NameAndCoord> namecoords = new List<NameAndCoord>();
-        
 
-        // store GameObject name "dock01_1",  and filepath "data/hd.../dock01.model".   need Dict with Array[] of string and float
-        // https://forum.unity.com/threads/c-arrays-with-multiple-types-of-data-at-each-point.144459/ 
-        //create a new type
-        // public class MyNewType
-        // {
-        //     //define all of the values for the class
-        //     public int Value1;
-        //     public string Name;
-
-
-        // from https://learn.unity.com/tutorial/classes-5#5c8a695cedbc2a067d475193
-        // public CoordObjs(float xin, float yin, float zin)
-        // {
-        //     coords = new float[] {xin, yin, zin};
-        //     this.namecoords.Add("name", coords);
-        // }
         public CoordObjs()
         {
             // this.namecoords = new Dictionary<string, float[]>();
@@ -97,27 +74,7 @@ public class saveJson : MonoBehaviour
 
         jsondata = JsonUtility.FromJson<CoordObjs>(strdata);
         Debug.Log("json read from file ToJson:                 " + JsonUtility.ToJson(jsondata));
-
-        // // This returns the GameObject named Hand. Hand must not have a parent in the Hierarchy view
-        // cube = GameObject.Find("/Cube");
-        // Debug.Log("Cube: " + cube.transform.position);
-
-        // // set position using jsondata
-        // cube.transform.position = new Vector3(jsondata.x, jsondata.y, jsondata.z);
-        // Debug.Log("Cube: " + cube.transform.position);
-        
-
-        // save to file in D:/apps/Unity Projects/proj3d-1/Assets/
-        // Application.persistentDataPath was C:/Users/Newone/AppData/LocalLow/DefaultCompany/proj3d-1
-        // Debug.Log("datapath " + Application.dataPath);  
-        // string jsonex = JsonUtility.ToJson(test);
-        // System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", jsonex);
-
-        // // instantiate cube
-        // GameObject cube1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        // cube1.transform.position = new Vector3(-10f, 0.5f, 0);
-        // cube1.name = "cube1_instantiated";
-
+       
         // instantiate dock.   https://stackoverflow.com/questions/42489397/load-3d-object-in-unity-using-script
         foreach(NameAndCoord ob in jsondata.namecoords)
         {
@@ -138,41 +95,23 @@ public class saveJson : MonoBehaviour
             dockObj.transform.rotation = quat;
             Debug.Log("dockObj.transform.rotation.y:            " + dockObj.transform.rotation.y);   // This is stores as a quat, 0.7071068
             
-
             // set filepath for the model file in D2R's data storage.    The filepath variable appears in the unity editor -> inspector (script component)
             // set from jsondata.namecoords[0].filepath
             // dockObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
             dockObj.GetComponent<SelectionBaseObject>().SetFilePath(ob.filepath);
             Debug.Log("fpath:            " + dockObj.GetComponent<SelectionBaseObject>().GetFilePath());
-
-        }
-
-        // var dockObj = Instantiate(Resources.Load("dock01")) as GameObject;
-        // dockObj.name = jsondata.namecoords[0].name;
-        // dockObj.transform.position = new Vector3(jsondata.namecoords[0].x, jsondata.namecoords[0].y, jsondata.namecoords[0].z);
-        // dockObj.AddComponent<SelectionBaseObject>();
-
-        // // set filepath for the model file in D2R's data storage.    The filepath variable appears in the unity editor -> inspector (script component)
-        // // set from jsondata.namecoords[0].filepath
-        // // dockObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
-        // dockObj.GetComponent<SelectionBaseObject>().SetFilePath(jsondata.namecoords[0].filepath);
-        // Debug.Log("fpath:            " + dockObj.GetComponent<SelectionBaseObject>().GetFilePath());
-      
+        }     
 
         // add button listener.  Set up button in scene.       https://www.tutorialspoint.com/unity/unity_the_button.htm  and https://forum.unity.com/threads/how-to-assign-onclick-for-ui-button-generated-in-runtime.358974/
         // Button b = gameObject.GetComponent<Button>();
+        // get game objects from scene / hierarchy.  https://docs.unity3d.com/ScriptReference/GameObject.Find.html
         Button save = GameObject.Find("Button").GetComponent<Button>();
         save.onClick.AddListener(SaveObjsToJson);
-        
     }
 
     void SaveObjsToJson()
     {
         Debug.Log("SaveObjsToJson() called ");
-        // // save to file in D:/apps/Unity Projects/proj3d-1/Assets/
-        // CoordObjs coords = new CoordObjs(cube.transform.position.x, cube.transform.position.y, cube.transform.position.z);
-        // string coordsjson = JsonUtility.ToJson(coords);
-        // System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", coordsjson);
 
         CoordObjs jsondata2 = new CoordObjs();
         // TODO: loop through GameObjects in the heirarchy.  works when new docks/objs are added.    (and removed)
@@ -191,9 +130,14 @@ public class saveJson : MonoBehaviour
         // save current objects positions to json file
         // Debug.Log("saving to file:                 " + JsonUtility.ToJson(jsondata2));
         System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", JsonUtility.ToJson(jsondata2));
+
+        // call python script that appends pos, rotation to docktown3_base.json and saves docktown3.json
+        string strCmd;
+        strCmd = "/C cd /d " + Application.dataPath + " && python preset_update.py";
+        System.Diagnostics.Process.Start("CMD.exe", strCmd);
     }
-    // in Unity editor, I click "play" which loads the cube object position from my json. then "pause" which allows me to move my objects.
-    // once I'm done moving and positioning the cube I can save the position to my json by clicking the 'save' button
+    // in Unity editor, I click "play" which loads the object position from my json. then "pause" which allows me to move my objects.
+    // once I'm done moving and positioning the object I can save the position to my json by clicking the 'save' button
 
     // OnDisable is called when the GameObject is toggled - disabled (checkbox in the Inspector).  (MainCamera has the attached script saveJson.cs)
     void OnDisable()

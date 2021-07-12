@@ -34,6 +34,7 @@ def write_json_d2r():
     ex1 = json.load(open('ex1.json', 'r'))
 
     entities_list = []
+    models_list = []
 
     for el in ex1['namecoords']:
         # {'name': 'dock5', 'filepath': 'modelpath3', 'x': 212.10000610351562, 'y': -4.0, 'z': 136.89999389648438}
@@ -51,12 +52,19 @@ def write_json_d2r():
 
         entities_list.append(ent_dict)
 
+        if {"path": el['filepath']} not in models_list:
+          models_list.append({"path": el['filepath']})
+
     json.dump(entities_list, open('entities_list.json', 'w'))
 
     # load docktown3.json base
     js_base = json.load(open('D://D2R//Data//hd//env//preset//act3//docktown//docktown3_base.json', 'r'))
     # add entities from ex1.json unity scene
     js_base['entities'] += entities_list
+    js_base['dependencies']['models'] += models_list
 
     # save to final docktown3.json
     json.dump(js_base, open('D://D2R//Data//hd//env//preset//act3//docktown//docktown3.json', 'w'))
+
+
+write_json_d2r()
