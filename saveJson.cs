@@ -11,7 +11,7 @@ public class saveJson : MonoBehaviour
     public CoordObjs jsondata;
     public CoordObjs jsondata2;
     
-    // custom class for list of coords for gameobjects (e.g. docks)
+    // custom class for list of coords for gameobject models (e.g. docks, trees, etc)
     [System.Serializable]
     public class NameAndCoord {
         public string name;
@@ -24,8 +24,12 @@ public class saveJson : MonoBehaviour
         public float qy;
         public float qz;
         public float qw;
+        // scale
+        public float scalex;
+        public float scaley;
+        public float scalez;
 
-        public NameAndCoord(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin)
+        public NameAndCoord(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin, float scalexin, float scaleyin, float scalezin)
         {
             this.name = namein;
             this.filepath = filepathin;
@@ -33,6 +37,7 @@ public class saveJson : MonoBehaviour
             this.y = yin;
             this.z = zin;
             this.qx = qxin; this.qy = qyin; this.qz = qzin; this.qw = qwin;
+            this.scalex = scalexin; this.scaley = scaleyin; this.scalez = scalezin;
         }
     }
     // structs added to list.  https://answers.unity.com/questions/996317/how-add-values-to-genericlist.html
@@ -48,10 +53,10 @@ public class saveJson : MonoBehaviour
         {
             // this.namecoords = new Dictionary<string, float[]>();
         }
-        public void AddNameCoords(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin)
+        public void AddNameCoords(string namein, string filepathin, float xin, float yin, float zin, float qxin, float qyin, float qzin, float qwin, float scalexin, float scaleyin, float scalezin)
         {
             NameAndCoord coordin;
-            coordin = new NameAndCoord(namein, filepathin, xin, yin, zin, qxin, qyin, qzin, qwin);
+            coordin = new NameAndCoord(namein, filepathin, xin, yin, zin, qxin, qyin, qzin, qwin, scalexin, scaleyin, scalezin);
             this.namecoords.Add(coordin);
         }
     }
@@ -69,7 +74,7 @@ public class saveJson : MonoBehaviour
         // {"namecoords":[{"name":"name","filepath":"modelpath","x":1.0,"y":0.0,"z":1.0}]}.   the namecoords variable is serialized  -v'
 
         // read from json. Application.dataPath has to be in Start() function. Errored when in saveJson() 'constructor'
-        string strdata = System.IO.File.ReadAllText(Application.dataPath + "/ex1.json");
+        string strdata = System.IO.File.ReadAllText(Application.dataPath + "/unityscene.json");
         Debug.Log("strdata:              " + strdata);
 
         jsondata = JsonUtility.FromJson<CoordObjs>(strdata);
@@ -81,26 +86,28 @@ public class saveJson : MonoBehaviour
             string modelfile; string[] strArr;
             modelfile = ob.filepath;
             strArr = modelfile.Split('/');     // NOTE:  use single quotes for char '/',  "/" is a string
-            // Debug.Log("StrArr[-1]:                  " + strArr[strArr.Length-1].Replace(".model",""));
-            var dockObj = Instantiate(Resources.Load(strArr[strArr.Length-1].Replace(".model",""))) as GameObject;
-            dockObj.name = ob.name;
+            var modelObj = Instantiate(Resources.Load(strArr[strArr.Length-1].Replace(".model",""))) as GameObject;
+            modelObj.name = ob.name;
             // **NOTE** render objects with x--> -x  since the orientation is like that in-game
-            dockObj.transform.position = new Vector3(-1*ob.x, ob.y, ob.z);
-            dockObj.AddComponent<SelectionBaseObject>();
+            modelObj.transform.position = new Vector3(-1*ob.x, ob.y, ob.z);
+            modelObj.AddComponent<SelectionBaseObject>();
 
             // Quaternion rotation "orientation": {"x": 0, "y": 0.707, "z": 0, "w": 0.707},   https://docs.unity3d.com/ScriptReference/Quaternion.html
             // https://answers.unity.com/questions/476128/how-to-change-quaternion-by-180-degrees.html
-            Quaternion quat = new Quaternion(ob.qx, -1*ob.qy, ob.qz, ob.qw);
-            // dockObj.transform.rotation = new Vector3(quat.eulerAngles.x, quat.eulerAngles.y, quat.eulerAngles.z);
-            dockObj.transform.rotation = quat;
-            Debug.Log("dockObj.transform.rotation.y:            " + dockObj.transform.rotation.y);   // This is stores as a quat, 0.7071068
-            
+            Quaternion quat = new Quaternion(ob.qx, -1*ob.qy, -1*ob.qz, ob.qw);
+            // modelObj.transform.rotation = new Vector3(quat.eulerAngles.x, quat.eulerAngles.y, quat.eulerAngles.z);
+            modelObj.transform.rotation = quat;
+            Debug.Log("modelObj.transform.rotation.y:            " + modelObj.transform.rotation.y);   // This is stores as a quat, 0.7071068
+
+            // scale.   NOTE:  4x scale helm in unity was much smaller than 4x scale helm in-game
+            modelObj.transform.localScale = new Vector3(ob.scalex, ob.scaley, ob.scalez);
+
             // set filepath for the model file in D2R's data storage.    The filepath variable appears in the unity editor -> inspector (script component)
             // set from jsondata.namecoords[0].filepath
-            // dockObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
-            dockObj.GetComponent<SelectionBaseObject>().SetFilePath(ob.filepath);
-            Debug.Log("fpath:            " + dockObj.GetComponent<SelectionBaseObject>().GetFilePath());
-        }     
+            // modelObj.GetComponent<SelectionBaseObject>().SetFilePath("data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model");
+            modelObj.GetComponent<SelectionBaseObject>().SetFilePath(ob.filepath);
+            Debug.Log("fpath:            " + modelObj.GetComponent<SelectionBaseObject>().GetFilePath());
+        }
 
         // add button listener.  Set up button in scene.       https://www.tutorialspoint.com/unity/unity_the_button.htm  and https://forum.unity.com/threads/how-to-assign-onclick-for-ui-button-generated-in-runtime.358974/
         // Button b = gameObject.GetComponent<Button>();
@@ -121,15 +128,15 @@ public class saveJson : MonoBehaviour
         for(int i = 0; i < gobjs.Length; i++) {
             if (gobjs[i].GetComponents<SelectionBaseObject>().Length != 0) {
                 Debug.Log("Contains SelectionBaseObj:                      " + i);    // Can check for lowercase name or another identifier (maybe selectionBaeObj)
-                // **NOTE** save objects with x--> -x, undoing the rendering orientation.   also rotation/quat is y --> -y
-                jsondata2.AddNameCoords(gobjs[i].name, gobjs[i].GetComponent<SelectionBaseObject>().GetFilePath(), -1*gobjs[i].transform.position.x, gobjs[i].transform.position.y, gobjs[i].transform.position.z, gobjs[i].transform.rotation.x, -1*gobjs[i].transform.rotation.y, gobjs[i].transform.rotation.z, gobjs[i].transform.rotation.w);
+                // **NOTE** save objects with x--> -x, undoing the rendering orientation.   also rotation/quat is y --> -y.  Scale in unity for the helm was much smaller than scale of helm in-game
+                jsondata2.AddNameCoords(gobjs[i].name, gobjs[i].GetComponent<SelectionBaseObject>().GetFilePath(), -1*gobjs[i].transform.position.x, gobjs[i].transform.position.y, gobjs[i].transform.position.z, gobjs[i].transform.rotation.x, -1*gobjs[i].transform.rotation.y, -1*gobjs[i].transform.rotation.z, gobjs[i].transform.rotation.w, gobjs[i].transform.localScale.x, gobjs[i].transform.localScale.y, gobjs[i].transform.localScale.z);
             }
         }
         Debug.Log("looped through GameObjs:                 " + JsonUtility.ToJson(jsondata2));
 
         // save current objects positions to json file
         // Debug.Log("saving to file:                 " + JsonUtility.ToJson(jsondata2));
-        System.IO.File.WriteAllText(Application.dataPath + "/ex1.json", JsonUtility.ToJson(jsondata2));
+        System.IO.File.WriteAllText(Application.dataPath + "/unityscene.json", JsonUtility.ToJson(jsondata2));
 
         // call python script that appends pos, rotation to docktown3_base.json and saves docktown3.json
         string strCmd;

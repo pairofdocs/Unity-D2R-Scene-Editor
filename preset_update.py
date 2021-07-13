@@ -1,10 +1,11 @@
+"""python script to save positions, rotations and scale into a base json"""
+
 import json
 import copy
 
-## python script to save positions into json
 
 false = False
-template_dock = {
+template_ent = {
         "type": "Entity", "name": "dock_template", "id": 3217705948,
         "components": [
           {
@@ -31,14 +32,14 @@ template_dock = {
       }
 
 def write_json_d2r():
-    ex1 = json.load(open('ex1.json', 'r'))
+    ex1 = json.load(open('unityscene.json', 'r'))
 
     entities_list = []
     models_list = []
 
     for el in ex1['namecoords']:
         # {'name': 'dock5', 'filepath': 'modelpath3', 'x': 212.10000610351562, 'y': -4.0, 'z': 136.89999389648438}
-        ent_dict = copy.deepcopy(template_dock)
+        ent_dict = copy.deepcopy(template_ent)
         ent_dict['name'] = el['name']
         ent_dict['components'][0]['filename'] = el['filepath']
         ent_dict['components'][1]['position']['x'] = el['x']
@@ -49,6 +50,10 @@ def write_json_d2r():
         ent_dict['components'][1]['orientation']['y'] = el['qy']
         ent_dict['components'][1]['orientation']['z'] = el['qz']
         ent_dict['components'][1]['orientation']['w'] = el['qw']
+        ## scale
+        ent_dict['components'][1]['scale']['x'] = el['scalex']
+        ent_dict['components'][1]['scale']['y'] = el['scaley']
+        ent_dict['components'][1]['scale']['z'] = el['scalez']
 
         entities_list.append(ent_dict)
 
@@ -59,7 +64,7 @@ def write_json_d2r():
 
     # load docktown3.json base
     js_base = json.load(open('D://D2R//Data//hd//env//preset//act3//docktown//docktown3_base.json', 'r'))
-    # add entities from ex1.json unity scene
+    # add entities from unityscene.json unity scene
     js_base['entities'] += entities_list
     js_base['dependencies']['models'] += models_list
 
