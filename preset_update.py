@@ -3,6 +3,9 @@
 import json
 import copy
 
+### Change these paths to load your map preset. These paths are examples using my own docktown3 location
+docktown_base = './/docktown3_base.json'
+docktown_final = 'D://D2R//Data//hd//env//preset//act3//docktown//docktown3.json'
 
 false = False
 template_ent = {
@@ -63,13 +66,13 @@ def write_json_d2r():
     json.dump(entities_list, open('entities_list.json', 'w'))
 
     # load docktown3.json base
-    js_base = json.load(open('D://D2R//Data//hd//env//preset//act3//docktown//docktown3_base.json', 'r'))
+    js_base = json.load(open(docktown_base, 'r'))
     # add entities from unityscene.json unity scene
     js_base['entities'] += entities_list
     js_base['dependencies']['models'] += models_list
 
     # save to final docktown3.json
-    json.dump(js_base, open('D://D2R//Data//hd//env//preset//act3//docktown//docktown3.json', 'w'))
+    json.dump(js_base, open(docktown_final, 'w'))
 
 
 write_json_d2r()

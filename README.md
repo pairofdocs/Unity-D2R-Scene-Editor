@@ -1,18 +1,21 @@
 ## Unity D2R Scene Editor
-Use unity to edit position, rotation and scale of D2R models in a level preset
+Use unity to edit position, rotation and scale of D2R models in a level preset. (Python is also required for running a json script)
 
 
-### Create 3D Scene in Unity\
+### Create 3D Scene in Unity
 - Launch [Unity](https://store.unity.com/download-nuo) and create a new 3d project and a level
 - Add the `saveJson.cs` script to a GameObject of a new 3d project level
 - Import model files (`.fbx`, `.dae` format) into Unity Assets. D2R's `.model` files can be converted to `.fbx` and `.dae` format with Noesis and the D2R_Reader plugin (see [Credits and Tools](#credits-and-tools))
 - Click `Play` and `Pause` then position models in the scene and add the `SelectionBaseObject.cs` script using the Inspector window on the right. (Identican models can be copy-pasted in the Scene Editor)
 - Click `Play` again once done editing and then the `Save` button on the left hand side
+![Unity docktown scene](./images/act3town_unity_scene.jpg)
 
 
 ### Unity Appends to D2R Preset
 - The Unity `Save` script loops through all models on the scene and appends them to a base json D2R preset file
-- Use the final json file in your D2R's data preset folder and see the model positions in-game
+- Change the paths to `docktown_base` and `docktown_final` on lines 7 and 8 in the file `preset_update.py` so they point at locations on your system
+- Launch D2R with the `docktown_final` json file in your D2R's data preset folder and see the model positions in-game
+![Docktown in game](./images/act3town_preset_ingame.jpg)
 
 
 ### Credits and Tools
