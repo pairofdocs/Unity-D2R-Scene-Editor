@@ -28,4 +28,7 @@ Use unity to edit position, rotation and scale of D2R models in a level preset. 
 
 
 ### Copyrights
-Models and images are copyrighted by Blizzard Entertainment.
+Diablo II and Diablo II: Resurrected are [copyrighted](https://www.blizzard.com/en-us/legal/9c9cb70b-d1ed-4e17-998a-16c6df46be7b/copyright-notices) by Blizzard Entertainment, Inc. All rights reserved. Diablo II, Diablo II: Resurrected and Blizzard Entertainment are [trademarks](https://www.blizzard.com/en-us/legal/9c9cb70b-d1ed-4e17-998a-16c6df46be7b/copyright-notices) or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries.  
+All trademarks referenced here are the properties of their respective owners.
+
+This project and its maintainers are not associated with or endorsed by Blizzard Entertainment, Inc.
