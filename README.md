@@ -4,7 +4,8 @@ Use unity to edit position, rotation and scale of D2R models in a level preset. 
 
 ### Create 3D Scene in Unity
 - Launch [Unity](https://store.unity.com/download-nuo) and create a new 3d project and a level
-- Add the `saveJson.cs` script to a GameObject of a new 3d project level
+- Add the `saveJson.cs` script to a GameObject (like the Main Camera) of the new 3d project level
+- Add a Button to the level canvas and give it the text `Save`
 - Import model files (`.fbx`, `.dae` format) into Unity Assets. D2R's `.model` files can be converted to `.fbx` and `.dae` format with Noesis and the D2R_Reader plugin (see [Credits and Tools](#credits-and-tools))
 - Click `Play` and `Pause` then position models in the scene and add the `SelectionBaseObject.cs` script using the Inspector window on the right. (Identical models can be copy-pasted in the Scene Editor window)
 - Each model object should have the `Filepath` variable set in Unity (in the Inspector window) to the path of the `.model` file that D2R uses. E.g. `data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model` for an act3 dock
