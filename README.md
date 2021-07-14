@@ -10,6 +10,7 @@ Use unity to edit position, rotation and scale of D2R models in a level preset. 
 - Click `Play` and `Pause` then position models in the scene and add the `SelectionBaseObject.cs` script using the Inspector window on the right. (Identical models can be copy-pasted in the Scene Editor window)
 - Each model object should have the `Filepath` variable set in Unity (in the Inspector window) to the path of the `.model` file that D2R uses. E.g. `data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model` for an act3 dock
 - Click `Play` again once done editing and then click the `Save` button in the upper left of the Scene window
+- The scene terrain object is using the act3 image `kurast_minimap_rot_skew2.png`
 ![Unity docktown scene](./images/act3town_unity_scene.jpg)
 
 
