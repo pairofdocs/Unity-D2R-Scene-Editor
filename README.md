@@ -1,5 +1,5 @@
 ## Unity D2R Scene Editor
-Use unity to edit position, rotation and scale of D2R models in a level preset. (Python is also required for running a json script)
+Use Unity to edit position, rotation and scale of D2R models in a level preset. (Python is also required for running a json script)
 
 
 ### Create 3D Scene in Unity
@@ -22,6 +22,8 @@ Use unity to edit position, rotation and scale of D2R models in a level preset. 
 
 
 ### Credits and Tools
+- Original preset editor D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio
+- LSLib by Norbyte https://github.com/Norbyte/lslib
 - Noesis model viewer and converter https://richwhitehouse.com/index.php?content=inc_projects.php
 - D2R_reader plugin for Noesis https://forum.xentax.com/viewtopic.php?f=16&t=22277&start=165#p173650
 - D2R texture format https://github.com/CucFlavius/Zee-010-Templates/blob/main/DiabloIIResurrected_Texture.bt
