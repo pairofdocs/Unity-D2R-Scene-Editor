@@ -1,5 +1,5 @@
 ## Unity D2R Scene Editor
-Use Unity to edit position, rotation and scale of D2R models in a level preset. (Python is also required for running a json script)
+Use Unity to edit position, rotation and scale of D2R models in a level preset. Inspired by Shalzuth's [D2RStudio](http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio)
 
 
 ### Create 3D Scene in Unity
@@ -16,13 +16,13 @@ Use Unity to edit position, rotation and scale of D2R models in a level preset. 
 
 ### Unity Appends to D2R Preset
 - The Unity `Save` script loops through all models on the scene and appends them to a base json D2R preset file (an example `docktown3_base.json` is included in this repo)
-- Change the paths to `docktown_base` and `docktown_final` on lines 7 and 8 in the file `preset_update.py` so they point to file locations on your system
+- Change the paths to `docktown_base` and `docktown_final` on lines 15 and 16 in the file `saveJson.cs` so they point to file locations on your system
 - Launch D2R with the `docktown_final` json file in your D2R's data preset folder and see the model positions in-game
 ![Docktown in game](./images/act3town_preset_ingame.jpg)
 
 
 ### Credits and Tools
-- Original preset editor D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio
+- D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio
 - LSLib by Norbyte https://github.com/Norbyte/lslib
 - Noesis model viewer and converter https://richwhitehouse.com/index.php?content=inc_projects.php
 - D2R_reader plugin for Noesis https://forum.xentax.com/viewtopic.php?f=16&t=22277&start=165#p173650
