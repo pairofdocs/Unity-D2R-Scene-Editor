@@ -2,7 +2,7 @@
 Edit D2R preset environments in Unity. *A purchased copy of D2R is required to access the data files*.
 
 1. Create a new 3D project in Unity (this example project is named "D2R-docktown")
-2. Copy the `Scripts/` folder to your unity project Assets folder (e.g. `...Unity Projects\D2R-docktown\Assets\Scripts`)
+2. Copy the `Scripts/` folder to your unity project Assets folder (e.g. `...Unity Projects/D2R-docktown/Assets/Scripts`)
 3. Copy the `libs/` and `Resources/` folders to your unity project Assets folder
 4. Open the project in Unity and select the `Main Camera` objects in the Scene. Then in the `Inspector` window on the right hand side add the script `SaveJson.cs`. (This is done only once per project)
 5. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in`SaveJson.cs` and save the file [see below](#config-data-paths)
