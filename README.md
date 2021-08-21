@@ -1,24 +1,33 @@
-## Unity D2R Scene Editor
-Use Unity to edit position, rotation and scale of D2R models in a level preset. Inspired by Shalzuth's [D2RStudio](http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio)
+## D2R-Preset-Unity
+Edit D2R preset environments in Unity. *A purchased copy of D2R is required to access the data files*.
+
+1. Create a new 3D project in Unity (this example project is named "D2R-Preset-Unity")
+2. Copy the `Scripts/` folder to your unity project Assets folder (e.g. `...Unity Projects\D2R-Preset-Unity\Assets\Scripts`)
+3. Copy the `libs/` and `Resources/` folders to your unity project Assets folder
+4. Open the project in Unity and select the `Main Camera` objects in the Scene. Then in the `Inspector` window on the right hand side add the script `SaveJson.cs`. (This is done only once per project)
+5. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in`SaveJson.cs` and save the file [see below](#config-data-paths)
+6. Click the "Play" button above the `Scene` window to load a json preset in the project folder (e.g. `docktown3.json`). Click "Pause" and move/rotate/scale objects in the Scene
+7. To add objects to the Scene click "Pause" to unpause and then click the "Add" button and specify the path of the model to add. Once objects have been added click "Pause" to go back to Scene editing 
+8. Click "Pause" once again to unpause when finished editing and then click "Save" to save your changes to the preset json file
+9. Place your edited preset json into your D2R/Data/hd/env/preset location and launch D2R with `-direct -txt`
 
 
-### Create 3D Scene in Unity
-- Launch [Unity](https://store.unity.com/download-nuo) and create a new 3d project and a level
-- Add the `saveJson.cs` script to a GameObject (like the Main Camera) of the new 3d project level
-- Add a Button to the level canvas and give it the text `Save`
-- Import model files (`.fbx`, `.dae` format) into Unity Assets. D2R's `.model` files can be converted to `.fbx` and `.dae` format with Noesis and the D2R_Reader plugin (see [Credits and Tools](#credits-and-tools))
-- Click `Play` and `Pause` then position models in the scene and add the `SelectionBaseObject.cs` script using the Inspector window on the right. (Identical models can be copy-pasted in the Scene Editor window)
-- Each model object should have the `Filepath` variable set in Unity (in the Inspector window) to the path of the `.model` file that D2R uses. E.g. `data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model` for an act3 dock
-- Click `Play` again once done editing and then click the `Save` button in the Scene window
-- The scene terrain object is using the act3 image `kurast_minimap_rot_skew2.png`
-![Unity docktown scene](./images/act3town_unity_scene.jpg)
+## Config Data Paths
+Lines 16 and 17 in `SaveJson.cs` should be configured for your D2R data paths and preset path
+```cs
+    public string preset = "docktown3.json";              // Change this to be the json preset that is edited
+    public static string d2rDataPath = "D:/D2R/";         // Change this to where your D2R data is extracted (casc storage)
+```
 
 
-### Unity Appends to D2R Preset
-- The Unity `Save` script loops through all models on the scene and appends them to a base json D2R preset file (an example `docktown3_base.json` is included in this repo)
-- Change the paths to `docktown_base` and `docktown_final` on lines 15 and 16 in the file `saveJson.cs` so they point to file locations on your system
-- Launch D2R with the `docktown_final` json file in your D2R's data preset folder and see the model positions in-game
-![Docktown in game](./images/act3town_preset_ingame.jpg)
+## Unity
+Freely available here https://store.unity.com/download-nuo
+
+
+## Screenshots
+![Unity scene](./screenshots/scene_docktown_lslib.jpg)
+
+![Act3 docktown in-game](./screenshots/docktown_ingame.jpg)
 
 
 ### Credits and Tools

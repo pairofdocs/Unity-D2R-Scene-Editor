@@ -1,0 +1,2259 @@
+{
+  "dependencies": {
+    "particles": [],
+    "models": [
+      {
+        "path": "data/hd/env/model/act1/outdoors/act1_outdoors_bridge/bridge_se01.model"
+      },
+      {
+        "path": "data/hd/env/model/act2/town/act2_town_ship/ship01.model"
+      },
+      {
+        "path": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model"
+      },
+      {
+        "path": "data/hd/items/armor/helmet/great_helm/model_source/great_helm.model"
+      },
+      {
+        "path": "data/hd/items/armor/helmet/helm/helm.model"
+      },
+      {
+        "path": "data/hd/env/foliage/expansion/model/expansion_trees_pine/expansion_tree_pine02.model"
+      },
+      {
+        "path": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model"
+      },
+      {
+        "path": "data/hd/env/foliage/act3/model/act3_trees_palm/act3_tree_palm01.model"
+      },
+      {
+        "path": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model"
+      },
+      {
+        "path": "data/hd/env/model/act1/outdoors/act1_outdoors_props/waypoint01.model"
+      },
+      {
+        "path": "data/hd/env/model/act2/town/act2_town_palace_structures/spire01.model"
+      },
+      {
+        "path": "data/hd/env/model/act3/docktown/act3_docktown_boats/gondola02.model"
+      }
+    ],
+    "skeletons": [],
+    "animations": [],
+    "textures": [],
+    "physics": [
+      {
+        "path": "data/hd/env/preset/test/vfxPerformanceRoom/terrain.physics"
+      }
+    ],
+    "json": [
+      {
+        "path": "data/hd/env/biome/act3_docktown.json"
+      }
+    ],
+    "variantdata": [],
+    "objecteffects": [],
+    "other": []
+  },
+  "type": "Preset",
+  "name": "preset",
+  "entities": [
+    {
+      "type": "Entity",
+      "name": "terrain",
+      "id": 2210499583,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "terrain_ModelDefinition",
+          "filename": "data/hd/env/preset/test/vfxPerformanceRoom/terrain.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 3,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "terrain_TransformDefinition",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "inheritOnlyPosition": false
+        },
+        {
+          "type": "TerrainDefinitionComponent",
+          "name": "terrain_TerrainDefinition"
+        },
+        {
+          "type": "PhysicsBodyDefinitionComponent",
+          "name": "terrain_PhysicsBodyDefinition",
+          "bodytype": "static",
+          "fixturedefs": [
+            {
+              "type": "PhysicsFixtureDefinition",
+              "name": "terrain_PhysicsBodyDefinition_fixturedefs_0",
+              "shapetype": {
+                "type": "PhysicsFileDefinition",
+                "name": "physicsFileDefinition",
+                "filename": "data/hd/env/preset/test/vfxPerformanceRoom/terrain.physics"
+              },
+              "friction": 0.6,
+              "restitution": 0,
+              "rollingresistance": 0.2,
+              "impulsefactor": 1,
+              "explosionfactor": 1,
+              "explosionliftfactor": 1,
+              "windfactor": 0,
+              "dragfactor": 0,
+              "liftfactor": 1,
+              "density": 37.5,
+              "boneindex": -1
+            }
+          ],
+          "filter": "floor",
+          "allowTransition": true,
+          "removeOnDeath": true,
+          "lineardamping": 0,
+          "angulardamping": 0,
+          "gravityscale": 1
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "bridge_se01",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act1/outdoors/act1_outdoors_bridge/bridge_se01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 294.0,
+            "y": 0.0,
+            "z": 304.1
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "ship1 (1)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act2/town/act2_town_ship/ship01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 199.5,
+            "y": 18.5,
+            "z": 367.1
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock14",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 154.84,
+            "y": -4.0,
+            "z": 179.29
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock13",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "great_helm",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/items/armor/helmet/great_helm/model_source/great_helm.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 279.53,
+            "y": 5.35,
+            "z": 361.91
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.7071068,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "helm",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/items/armor/helmet/helm/helm.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 271.67,
+            "y": 5.41,
+            "z": 370.47
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "expansion_tree_pine02",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/expansion/model/expansion_trees_pine/expansion_tree_pine02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 261.346283,
+            "y": -0.05,
+            "z": 389.134735
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (8)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 286.58,
+            "y": 0.1,
+            "z": 358.78
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (7)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 289.8,
+            "y": 0.1,
+            "z": 359.71
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (6)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 292.81,
+            "y": 0.1,
+            "z": 362.54
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (5)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 291.75,
+            "y": 0.1,
+            "z": 365.91
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (4)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 290.29,
+            "y": 0.1,
+            "z": 362.81
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (3)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 288.92,
+            "y": 0.1,
+            "z": 366.15
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (2)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 285.98,
+            "y": 0.1,
+            "z": 366.6
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02 (1)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 287.53,
+            "y": 0.1,
+            "z": 362.22
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_tree_palm01",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/act3/model/act3_trees_palm/act3_tree_palm01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 237.413422,
+            "y": -3.7,
+            "z": 380.113342
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "act3_weeds02",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/foliage/global/model/act3_weeds/act3_weeds02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 283.82,
+            "y": 0.1,
+            "z": 362.27
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (15)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 259.5,
+            "y": -4.0,
+            "z": 362.9
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (14)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 269.7,
+            "y": -4.0,
+            "z": 362.9
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (13)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 280.3,
+            "y": -4.0,
+            "z": 362.9
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (12)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 281.44,
+            "y": -4.0,
+            "z": 325.57
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (11)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 280.9,
+            "y": -4.0,
+            "z": 338.25
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (10)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 280.9,
+            "y": -4.0,
+            "z": 350.75
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (9)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 260.1,
+            "y": -4.0,
+            "z": 351.7
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (8)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 270.4,
+            "y": -4.0,
+            "z": 351.2
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (7)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 271.46,
+            "y": -4.0,
+            "z": 338.3
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (6)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 272.09,
+            "y": -4.0,
+            "z": 325.9
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (5)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 272.79,
+            "y": -4.0,
+            "z": 313.6
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (4)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 261.81,
+            "y": -4.0,
+            "z": 315.09
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (3)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 261.42,
+            "y": -4.0,
+            "z": 327.22
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (2)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 261.26,
+            "y": -4.0,
+            "z": 339.42
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1 (1)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 250.51,
+            "y": -4.0,
+            "z": 339.9
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "hut_landing1",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/hut_landing01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 239.727936,
+            "y": -4.0,
+            "z": 340.27652
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock13",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 229.8,
+            "y": -4.0,
+            "z": 331.6
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "waypoint1",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act1/outdoors/act1_outdoors_props/waypoint01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 328.0,
+            "y": 0.0,
+            "z": 108.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock3",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 271.0,
+            "y": -4.0,
+            "z": 234.5
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock2",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 271.0,
+            "y": -4.0,
+            "z": 280.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock1",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 271.099976,
+            "y": -4.0,
+            "z": 260.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock4",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 366.9,
+            "y": -4.0,
+            "z": 172.12
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock5",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 346.602081,
+            "y": -4.0,
+            "z": 172.414581
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock6",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 349.7,
+            "y": -4.0,
+            "z": 304.74
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock7",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 350.07,
+            "y": -4.0,
+            "z": 324.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "ship1",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act2/town/act2_town_ship/ship01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 174.7,
+            "y": 18.5,
+            "z": 303.0
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock8",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 215.180008,
+            "y": -4.0,
+            "z": 179.6
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock9",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 195.1,
+            "y": -4.0,
+            "z": 179.29
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock10",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 171.4,
+            "y": -4.0,
+            "z": 149.3
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock11",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 170.7,
+            "y": -4.0,
+            "z": 48.3
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "dock12",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_docks/dock01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 242.2,
+            "y": -4.0,
+            "z": 90.6
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.7071068,
+            "z": 0.0,
+            "w": 0.7071068
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "spire01",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act2/town/act2_town_palace_structures/spire01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 262.0,
+            "y": -37.3,
+            "z": 157.8
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 2.0,
+            "y": 2.0,
+            "z": 2.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "ship1 (2)",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act2/town/act2_town_ship/ship01.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 239.418335,
+            "y": 18.5,
+            "z": 298.782562
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.9955707,
+            "z": 0.0,
+            "w": 0.0940161347
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    },
+    {
+      "type": "Entity",
+      "name": "gondola02",
+      "id": 3217705948,
+      "components": [
+        {
+          "type": "ModelDefinitionComponent",
+          "name": "dock_template_components_ModelDefinitionComponent",
+          "filename": "data/hd/env/model/act3/docktown/act3_docktown_boats/gondola02.model",
+          "visibleLayers": 1,
+          "lightMask": 19,
+          "shadowMask": 1,
+          "ghostShadows": false,
+          "floorModel": false,
+          "terrainBlendEnableYUpBlend": false,
+          "terrainBlendMode": 1
+        },
+        {
+          "type": "TransformDefinitionComponent",
+          "name": "dock_template_components_TransformDefinitionComponent",
+          "position": {
+            "x": 253.6,
+            "y": 0.0,
+            "z": 253.5
+          },
+          "orientation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "inheritOnlyPosition": false
+        }
+      ]
+    }
+  ],
+  "terrain": {
+    "type": "Entity",
+    "name": "terrain",
+    "id": 2210499583,
+    "components": [
+      {
+        "type": "ModelDefinitionComponent",
+        "name": "terrain_ModelDefinition",
+        "filename": "data/hd/env/preset/test/vfxPerformanceRoom/terrain.model",
+        "visibleLayers": 1,
+        "lightMask": 19,
+        "shadowMask": 3,
+        "ghostShadows": false,
+        "floorModel": false,
+        "terrainBlendEnableYUpBlend": false,
+        "terrainBlendMode": 1
+      },
+      {
+        "type": "TransformDefinitionComponent",
+        "name": "terrain_TransformDefinition",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "orientation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "inheritOnlyPosition": false
+      },
+      {
+        "type": "TerrainDefinitionComponent",
+        "name": "terrain_TerrainDefinition"
+      },
+      {
+        "type": "PhysicsBodyDefinitionComponent",
+        "name": "terrain_PhysicsBodyDefinition",
+        "bodytype": "static",
+        "fixturedefs": [
+          {
+            "type": "PhysicsFixtureDefinition",
+            "name": "terrain_PhysicsBodyDefinition_fixturedefs_0",
+            "shapetype": {
+              "type": "PhysicsFileDefinition",
+              "name": "physicsFileDefinition",
+              "filename": "data/hd/env/preset/test/vfxPerformanceRoom/terrain.physics"
+            },
+            "friction": 0.6,
+            "restitution": 0,
+            "rollingresistance": 0.2,
+            "impulsefactor": 1,
+            "explosionfactor": 1,
+            "explosionliftfactor": 1,
+            "windfactor": 0,
+            "dragfactor": 0,
+            "liftfactor": 1,
+            "density": 37.5,
+            "boneindex": -1
+          }
+        ],
+        "filter": "floor",
+        "allowTransition": true,
+        "removeOnDeath": true,
+        "lineardamping": 0,
+        "angulardamping": 0,
+        "gravityscale": 1
+      }
+    ]
+  },
+  "biomeFilename": "data/hd/env/biome/act3_docktown.json",
+  "perTileBiomeOverrides": []
+}
