@@ -5,7 +5,7 @@ Edit D2R preset environments in Unity. *A purchased copy of D2R is required to a
 2. Copy the `Scripts/`, `libs/` and `Resources/` folders to your unity project Assets folder (e.g. `...Unity Projects/D2R-docktown/Assets/Scripts`)
 3. Copy the example preset `docktown3.json` and `terrain_template.json` to the Assets folder
 4. Open the project in Unity and select the `Main Camera` objects in the Scene. Then in the `Inspector` window on the right hand side add the script `SaveJson.cs`. (This is done only once per project)
-5. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in`SaveJson.cs` and save the file [see below](#config-data-paths)
+5. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in`SaveJson.cs` and save the script [see below](#config-data-paths)
 6. Click the "Play" button above the `Scene` window to load a json preset in the project folder (e.g. `docktown3.json`). Click "Pause" and move/rotate/scale objects in the Scene
 7. To add objects to the Scene click "Pause" to unpause and then click the "Add" button and specify the path of the model to add. Once objects have been added click "Pause" to go back to Scene editing 
 8. Click "Pause" once again to unpause when finished editing and then click "Save" to save your changes to the preset json file
@@ -13,7 +13,7 @@ Edit D2R preset environments in Unity. *A purchased copy of D2R is required to a
 
 
 ## Config Data Paths
-Lines 16 and 17 in `SaveJson.cs` should be configured for your D2R data paths and preset path
+Lines 16 and 17 in `SaveJson.cs` should be configured for your preset path and D2R data path
 ```cs
     public string preset = "docktown3.json";              // Change this to be the json preset that is edited
     public static string d2rDataPath = "D:/D2R/";         // Change this to where your D2R data is extracted (casc storage)
