@@ -2,14 +2,13 @@
 Edit D2R preset environments in Unity. *A purchased copy of D2R is required to access the data files*.
 
 1. Create a new 3D project in Unity (this example project is named "D2R-docktown")
-2. Copy the `Scripts/`, `libs/` and `Resources/` folders to your unity project Assets folder (e.g. `...Unity Projects/D2R-docktown/Assets/Scripts`)
-3. Copy the example preset `docktown3.json` and `terrain_template.json` to the Assets folder
-4. Open the project in Unity and select the `Main Camera` objects in the Scene. Then in the `Inspector` window on the right hand side add the script `SaveJson.cs`. (This is done only once per project)
-5. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in`SaveJson.cs` and save the script [see below](#config-data-paths)
-6. Click the "Play" button above the `Scene` window to load a json preset in the project folder (e.g. `docktown3.json`). Click "Pause" and move/rotate/scale objects in the Scene
-7. To add objects to the Scene click "Pause" to unpause and then click the "Add" button and specify the path of the model to add. Once objects have been added click "Pause" to go back to Scene editing 
-8. Click "Pause" once again to unpause when finished editing and then click "Save" to save your changes to the preset json file
-9. Place your edited preset json into your D2R/Data/hd/env/preset location and launch D2R with `-direct -txt`
+2. Download this [repository](https://github.com/pairofdocs/Unity-D2R-Scene-Editor/archive/refs/heads/master.zip), unzip and place its contents into your unity project Assets folder (e.g. `...Unity Projects/D2R-docktown/Assets/Scripts , Resources, libs, ...`)
+3. Open the project in Unity and select the `Main Camera` object in the Scene. Then in the `Inspector` window on the right hand side add a component script `SaveJson.cs`. (This is done only once per project)
+4. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in `SaveJson.cs` and save the script [see below](#config-data-paths)
+5. Click the blue "Play" button above the `Scene` window to load a json preset in the project folder (e.g. `docktown3.json`). Click "Pause" and move/rotate/scale objects in the Scene
+6. To add objects to the Scene click "Pause" to unpause and then click the "Add" button on the left of the Scene and specify the path of the model to add. Once objects have been added click "Pause" to go back to Scene editing 
+7. When finished editing click "Pause" once again to unpause and then click "Save" on the left of the Scene to save your changes to the preset json file
+8. Place your edited preset json into your D2R/Data/hd/env/preset location and launch D2R with `-direct -txt`
 
 
 ## Config Data Paths
@@ -31,7 +30,7 @@ Freely available here https://store.unity.com/download-nuo
 
 
 ## Credits and Tools
-- D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio
+- D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio which this project is based on
 - LSLib by Norbyte https://github.com/Norbyte/lslib
 - Noesis model viewer and converter https://richwhitehouse.com/index.php?content=inc_projects.php
 - D2R_reader plugin for Noesis https://forum.xentax.com/viewtopic.php?f=16&t=22277&start=165#p173650
