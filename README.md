@@ -30,7 +30,7 @@ Freely available here https://store.unity.com/download-nuo
 ![Act3 docktown in-game](./screenshots/docktown_ingame.jpg)
 
 
-### Credits and Tools
+## Credits and Tools
 - D2RStudio by Shalzuth http://web.archive.org/web/20210508115732/github.com/shalzuth/d2rstudio
 - LSLib by Norbyte https://github.com/Norbyte/lslib
 - Noesis model viewer and converter https://richwhitehouse.com/index.php?content=inc_projects.php
@@ -38,7 +38,7 @@ Freely available here https://store.unity.com/download-nuo
 - D2R texture format https://github.com/CucFlavius/Zee-010-Templates/blob/main/DiabloIIResurrected_Texture.bt
 
 
-### Copyrights
+## Copyrights
 Diablo II and Diablo II: Resurrected are [copyrighted](https://www.blizzard.com/en-us/legal/9c9cb70b-d1ed-4e17-998a-16c6df46be7b/copyright-notices) by Blizzard Entertainment, Inc. All rights reserved. Diablo II, Diablo II: Resurrected and Blizzard Entertainment are [trademarks](https://www.blizzard.com/en-us/legal/9c9cb70b-d1ed-4e17-998a-16c6df46be7b/copyright-notices) or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries.  
 All trademarks referenced here are the properties of their respective owners.
 
