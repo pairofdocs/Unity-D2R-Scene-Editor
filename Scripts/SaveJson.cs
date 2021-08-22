@@ -32,9 +32,15 @@ public class SaveJson : MonoBehaviour
         foreach(JObject ob in ents) {
             string entname = (string)ob["name"];
             JArray comps = (JArray)ob["components"];
+            GameObject modelObj = new GameObject(entname);                      // terrain, waypoint01, ...
+            Vector3 entpos = new Vector3(); 
+            Quaternion entquat = new Quaternion(); 
+            Vector3 entscale = new Vector3();                                  // ModelDef and mesh have to be set first. Then transformDef
+
             foreach(JObject comp in comps) {
                 string modelfile; string[] strArr;
                 if ( ((string) comp["type"]) == "ModelDefinitionComponent" ) {
+                    // Note: some ents don't have ModelDefinitionComponents (but model variation comps.  e.g. l_wall01_06  in towns1.json)
                     modelfile = (string) comp["filename"];
                     strArr = modelfile.Split('/');     // NOTE:  use single quotes for char '/',  "/" is a string
                     // Debug.Log("component:              " + strArr[strArr.Length-1].Replace(".model",""));
@@ -43,8 +49,7 @@ public class SaveJson : MonoBehaviour
                         string fullpath = d2rDataPath + modelfile;
                         fullpath = fullpath.Replace(".model", "_lod0.model");   // append _lod3 to model basename.      **NOTE:** was only able to load lod0.model
                         
-                        var go = new GameObject(entname);                                       // terrain, waypoint01, ...
-                        var mesh = go.AddComponent<MeshLoader>();                               // add script component
+                        var mesh = modelObj.AddComponent<MeshLoader>();                               // add component
                         var root = LSLib.Granny.GR2Utils.LoadModel(fullpath);  
                         mesh.Load(root, fullpath, loadTextures);
                     }
@@ -57,24 +62,25 @@ public class SaveJson : MonoBehaviour
                 }
                 else if ( ((string) comp["type"]) == "TransformDefinitionComponent" ) {
                     // Debug.Log("transformDef component:              " + entname);
-                    GameObject modelObj = GameObject.Find(entname);
-
                     // **NOTE** render objects with x--> -x  since the orientation is like that in-game
                     JObject pos = (JObject)comp["position"];                  // orientation, scale
-                    modelObj.transform.position = new Vector3(-1*(float) pos["x"], (float) pos["y"], (float) pos["z"]);
+                    entpos = new Vector3(-1*(float) pos["x"], (float) pos["y"], (float) pos["z"]);
 
                     // Quaternion rotation "orientation": {"x": 0, "y": 0.707, "z": 0, "w": 0.707},   https://docs.unity3d.com/ScriptReference/Quaternion.html
                     // https://answers.unity.com/questions/476128/how-to-change-quaternion-by-180-degrees.html
                     JObject ori = (JObject)comp["orientation"];
-                    Quaternion quat = new Quaternion((float) ori["x"], -1*(float) ori["y"], -1*(float) ori["z"], (float) ori["w"] );
+                    entquat = new Quaternion((float) ori["x"], -1*(float) ori["y"], -1*(float) ori["z"], (float) ori["w"] );
                     // modelObj.transform.rotation = Quaternion.Euler(quat.eulerAngles.x, quat.eulerAngles.y, quat.eulerAngles.z);
-                    modelObj.transform.rotation = quat;
 
                     // scale.   NOTE:  4x scale helm in unity was much smaller than 4x scale helm in-game
                     JObject scale = (JObject)comp["scale"];
-                    modelObj.transform.localScale = new Vector3((float) scale["x"], (float) scale["y"], (float) scale["z"]);
+                    entscale = new Vector3((float) scale["x"], (float) scale["y"], (float) scale["z"]);
                 }
             }
+            // ModelDef and mesh have to be set first. Then transformDef
+            modelObj.transform.position = entpos;
+            modelObj.transform.rotation = entquat;
+            modelObj.transform.localScale = entscale;
         }
         // https://answers.unity.com/questions/1034060/create-unity-ui-panel-via-script.html    (renderMode, raycaster)
         GameObject newCanvas = new GameObject("Canvas");
