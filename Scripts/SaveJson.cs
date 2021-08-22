@@ -18,17 +18,16 @@ public class SaveJson : MonoBehaviour
     public string lastModlPath;
     public bool loadTextures = true;                         // Set this to false to avoid loading textures. Not loading textures may make Unity load scenes faster
     public JObject entsJsons = new JObject();
+    public JObject jsondata;
         
     // Start is called before the first frame update
     void Start()
     {
         lastModlPath = d2rDataPath + "Data/hd/";
-
         Debug.Log("Preset to edit: " + Application.dataPath + "/" + preset);
-        JObject jsondata = JObject.Parse(File.ReadAllText(Application.dataPath + "/" + preset));
-
+        jsondata = JObject.Parse(File.ReadAllText(Application.dataPath + "/" + preset));
         // json documentation https://www.newtonsoft.com/json/help/html/ModifyJson.htm
-        JArray ents = (JArray)jsondata["entities"];
+        JArray ents = (JArray)jsondata["entities"];   // ** TODO:  can consilidate  entsJsons and ents vars
 
         foreach(JObject ob in ents) {
             string entname = (string)ob["name"];
@@ -217,6 +216,22 @@ public class SaveJson : MonoBehaviour
                 if (!models_list.Contains("data/hd" + splitpath[1])) {
                     models_list.Add("data/hd" + splitpath[1]);
                 }
+            }
+        }
+        // if not modeldef or modelvariationdef then add to jsonpreset
+        JArray ents = (JArray)jsondata["entities"];   // ** TODO:  can consilidate  entsJsons and ents vars
+        string[] defsArray = {"ModelDefinitionComponent", "ModelVariationDefinitionComponent"};
+        foreach(JObject ob in ents) {
+            JArray comps = (JArray)ob["components"];
+            var ent_with_model = false;
+            foreach(JObject comp in comps) {
+                if ( Array.IndexOf(defsArray, (string)comp["type"]) > -1 ) { 
+                    ent_with_model = true;
+                    break;
+                }
+            }
+            if (!ent_with_model) {
+                ((JArray)jsonpreset["entities"]).Add(ob);
             }
         }
         // Debug.Log("models_list:           " + String.Join(",", models_list));
