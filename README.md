@@ -24,9 +24,13 @@ Freely available here https://store.unity.com/download-nuo
 
 
 ## Screenshots
-![Unity scene](./screenshots/scene_docktown_lslib.jpg)
+![Unity act3 scene](./screenshots/scene_docktown_lslib.jpg)
 
 ![Act3 docktown in-game](./screenshots/docktown_ingame.jpg)
+
+![Unity act1 south scene](./screenshots/scene_act1towns.jpg)
+
+![Act1 south in-game](./screenshots/act1towns_ingame.jpg)
 
 
 ## Credits and Tools

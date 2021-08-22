@@ -17,6 +17,7 @@ public class SaveJson : MonoBehaviour
     public static string d2rDataPath = "D:/D2R - beta/";     // Change this to where your D2R data is extracted (casc storage)
     public string lastModlPath;
     public bool loadTextures = true;                         // Set this to false to avoid loading textures. Not loading textures may make Unity load scenes faster
+    public JObject entsJsons = new JObject();
         
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,8 @@ public class SaveJson : MonoBehaviour
             Vector3 entpos = new Vector3(); 
             Quaternion entquat = new Quaternion(); 
             Vector3 entscale = new Vector3();                                  // ModelDef and mesh have to be set first. Then transformDef
-
+            entsJsons[entname] = ob;
+            
             foreach(JObject comp in comps) {
                 string modelfile; string[] strArr;
                 if ( ((string) comp["type"]) == "ModelDefinitionComponent" ) {
@@ -59,6 +61,16 @@ public class SaveJson : MonoBehaviour
                             Debug.LogException(e, this);
                         }
                     }
+                }  // get correct variation path and load mesh
+                else if ( ((string) comp["type"]) == "ModelVariationDefinitionComponent" ) {
+                    modelfile = (string) comp["variations"][0]["filename"];    // e.g. data/hd/env/model/act1/outdoors/act1_outdoors_stonewalls/l_wall01.model
+                    // Load mesh for model   // "path": "data/hd/env/model/act1/outdoors/act1_outdoors_props/waypoint01.model"
+                    string fullpath = d2rDataPath + modelfile;
+                    fullpath = fullpath.Replace(".model", "_lod0.model");   // append _lod3 to model basename
+                    
+                    var mesh = modelObj.AddComponent<MeshLoader>();                               // add component
+                    var root = LSLib.Granny.GR2Utils.LoadModel(fullpath);  
+                    mesh.Load(root, fullpath, loadTextures);
                 }
                 else if ( ((string) comp["type"]) == "TransformDefinitionComponent" ) {
                     // Debug.Log("transformDef component:              " + entname);
@@ -82,6 +94,8 @@ public class SaveJson : MonoBehaviour
             modelObj.transform.rotation = entquat;
             modelObj.transform.localScale = entscale;
         }
+        // Debug.Log("len(entsJsons):              " + entsJsons.Count);
+        
         // https://answers.unity.com/questions/1034060/create-unity-ui-panel-via-script.html    (renderMode, raycaster)
         GameObject newCanvas = new GameObject("Canvas");
         Canvas c = newCanvas.AddComponent<Canvas>();
@@ -114,13 +128,17 @@ public class SaveJson : MonoBehaviour
         // read preset json and append entities. Read terrain entity from a template json file
         JObject jsonpreset = JObject.Parse(File.ReadAllText(Application.dataPath + "/" + preset));
         jsonpreset["entities"] = new JArray();
-        jsonpreset["dependencies"]["models"] = new JArray();
+        // jsonpreset["dependencies"]["models"] = new JArray();    // do not clear the models list. keep models and variation models from preset
         List<string> models_list = new List<string>();
-        
-        JObject terrain_ent = JObject.Parse(File.ReadAllText(Application.dataPath + "/terrain_template.json"));
-        ((JArray)jsonpreset["entities"]).Add(terrain_ent);
+        // JObject terrain_ent = JObject.Parse(File.ReadAllText(Application.dataPath + "/terrain_template.json"));
+        // Require preset json to contain a terrain entity
+        try {
+            ((JArray)jsonpreset["entities"]).Add(entsJsons["terrain"]);
+        }
+        catch {
+            Debug.Log("Terrain entity not found in preset json entities list. A terrain entity is required, please add a template terrain entity (terrain_template.json is provided) to your preset json at the least.");
+        }
         // Debug.Log("jsonpreset:                " + jsonpreset);
-
         string template_ent = @"{
             'type': 'Entity', 'name': 'dock_template', 'id': 3217705948,
             'components': [
@@ -155,23 +173,46 @@ public class SaveJson : MonoBehaviour
                 // Debug.Log("Contains MeshLoader:                      " + i);    // Can check for lowercase name or another identifier (maybe selectionBaeObj)
                 var fullp = (gobjs[i].GetComponent<MeshLoader>().GetFilePath()).Replace("_lod0.model", ".model");  // e.g. ship01_lod0.model  -->  ship01.model
                 string[] splitpath = fullp.Replace("Data/hd","data/hd").Split(new string[] {"data/hd"}, StringSplitOptions.None);
-                
-                JObject ent_dict = JObject.Parse(template_ent);
-                ent_dict["name"] = gobjs[i].name;
-                ent_dict["components"][0]["filename"] = "data/hd" + splitpath[1];
-                ent_dict["components"][1]["position"]["x"] = -1*gobjs[i].transform.position.x;
-                ent_dict["components"][1]["position"]["y"] = gobjs[i].transform.position.y;
-                ent_dict["components"][1]["position"]["z"] = gobjs[i].transform.position.z;
-                ent_dict["components"][1]["orientation"]["x"] = gobjs[i].transform.rotation.x;
-                ent_dict["components"][1]["orientation"]["y"] = -1*gobjs[i].transform.rotation.y;
-                ent_dict["components"][1]["orientation"]["z"] = -1*gobjs[i].transform.rotation.z;
-                ent_dict["components"][1]["orientation"]["w"] = gobjs[i].transform.rotation.w;
-                ent_dict["components"][1]["scale"]["x"] = gobjs[i].transform.localScale.x;
-                ent_dict["components"][1]["scale"]["y"] = gobjs[i].transform.localScale.y;
-                ent_dict["components"][1]["scale"]["z"] = gobjs[i].transform.localScale.z;
-                // Debug.Log("ent_dict:"              + ent_dict);
-                ((JArray)jsonpreset["entities"]).Add(ent_dict);
 
+                if ( entsJsons.ContainsKey(gobjs[i].name) ) {
+                    // Debug.Log(" entsJson contains     " + gobjs[i].name);
+                    // set transform.position, orientation, scale from unity scene
+                    foreach(JObject comp in (JArray)entsJsons[gobjs[i].name]["components"]) {
+                        if ( ((string)comp["type"]) == "TransformDefinitionComponent" ) {
+                            comp["position"]["x"] = -1*gobjs[i].transform.position.x;
+                            comp["position"]["y"] = gobjs[i].transform.position.y;
+                            comp["position"]["z"] = gobjs[i].transform.position.z;
+                            comp["orientation"]["x"] = gobjs[i].transform.rotation.x;
+                            comp["orientation"]["y"] = -1*gobjs[i].transform.rotation.y;
+                            comp["orientation"]["z"] = -1*gobjs[i].transform.rotation.z;
+                            comp["orientation"]["w"] = gobjs[i].transform.rotation.w;
+                            comp["scale"]["x"] = gobjs[i].transform.localScale.x;
+                            comp["scale"]["y"] = gobjs[i].transform.localScale.y;
+                            comp["scale"]["z"] = gobjs[i].transform.localScale.z;
+                            break;
+                        }
+                    }
+                    ((JArray)jsonpreset["entities"]).Add(entsJsons[gobjs[i].name]);
+                }
+                else {
+                    JObject ent_dict = JObject.Parse(template_ent);
+                    ent_dict["name"] = gobjs[i].name;
+                    ent_dict["components"][0]["filename"] = "data/hd" + splitpath[1];
+                    ent_dict["components"][1]["position"]["x"] = -1*gobjs[i].transform.position.x;
+                    ent_dict["components"][1]["position"]["y"] = gobjs[i].transform.position.y;
+                    ent_dict["components"][1]["position"]["z"] = gobjs[i].transform.position.z;
+                    ent_dict["components"][1]["orientation"]["x"] = gobjs[i].transform.rotation.x;
+                    ent_dict["components"][1]["orientation"]["y"] = -1*gobjs[i].transform.rotation.y;
+                    ent_dict["components"][1]["orientation"]["z"] = -1*gobjs[i].transform.rotation.z;
+                    ent_dict["components"][1]["orientation"]["w"] = gobjs[i].transform.rotation.w;
+                    ent_dict["components"][1]["scale"]["x"] = gobjs[i].transform.localScale.x;
+                    ent_dict["components"][1]["scale"]["y"] = gobjs[i].transform.localScale.y;
+                    ent_dict["components"][1]["scale"]["z"] = gobjs[i].transform.localScale.z;
+                    // Debug.Log("ent_dict:"              + ent_dict);
+                    ((JArray)jsonpreset["entities"]).Add(ent_dict);
+                }
+
+                // if ent in entsJsons. path is already in ModelDef or ModelVariation
                 // append to models list if not already in
                 if (!models_list.Contains("data/hd" + splitpath[1])) {
                     models_list.Add("data/hd" + splitpath[1]);
@@ -179,7 +220,7 @@ public class SaveJson : MonoBehaviour
             }
         }
         // Debug.Log("models_list:           " + String.Join(",", models_list));
-        // for element in model_list, append to jsonpreset["models"]
+        // **TODO: account for duplicate dicts from orig json.  for element in model_list, append to jsonpreset["models"]
         foreach(string fp in models_list){
             string modelpath_dict = "{'path':'" + fp + "'}";
             ((JArray)jsonpreset["dependencies"]["models"]).Add(JObject.Parse(modelpath_dict));
