@@ -1,9 +1,11 @@
 ## Unity-D2R-Scene-Editor
-Edit D2R preset environments in Unity. *A purchased copy of D2R is required to access the data files*.
+Edit D2R preset environments in Unity. *A purchased copy of D2R is required to access the data files*.  
+
+(Recommended: intro video about Unity's layout, panels and terminology https://youtu.be/pwZpJzpE2lQ?t=71)
 
 1. Create a [new 3D project](https://youtu.be/mcHBN_mDIxI?t=23) in Unity (this example project is named "D2R-docktown")
 2. Download this [repository](https://github.com/pairofdocs/Unity-D2R-Scene-Editor/archive/refs/heads/master.zip), unzip and place its contents into your unity project Assets folder (e.g. `...Unity Projects/D2R-docktown/Assets/Scripts , Resources, libs, ...`)
-3. Open the project in Unity and select the `Main Camera` object in the Scene. Then in the `Inspector` window on the right hand side add a component script `Scripts/SaveJson.cs`. (This is done only once per project)
+3. Open the project in Unity and select the `Main Camera` object in the Hierarchy. Then in the `Inspector` window on the right hand side add a component script `Scripts/SaveJson.cs`. (This is done only once per project)
 4. Save your Unity Scene with `ctrl+s`. Set your D2R data paths in `SaveJson.cs` and save the script [see below](#config-data-paths)
 5. Click the blue "Play" button above the `Scene` window to load a json preset in the project folder (e.g. `docktown3.json`). Click "Pause" and move/rotate/scale objects in the Scene
 6. To add objects to the Scene click "Pause" to unpause and then click the "Add" button on the left of the Scene and specify the path of the model to add. Once objects have been added click "Pause" to go back to Scene editing 
