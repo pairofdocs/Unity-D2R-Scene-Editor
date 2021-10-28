@@ -12,6 +12,8 @@ Edit D2R preset environments in Unity. *A purchased copy of D2R is required to a
 7. When finished editing click "Pause" once again to unpause and then click "Save" on the left of the Scene to save your changes to the preset json file
 8. Place your edited preset json into your D2R/Data/hd/env/preset location and launch D2R with `-direct -txt`
 
+A video showing act1 edits: https://streamable.com/xbxe7i
+
 
 ## Config Data Paths
 Lines 16 and 17 in `SaveJson.cs` should be configured for your preset path and D2R data path
