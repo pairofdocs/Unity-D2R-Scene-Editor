@@ -14,6 +14,16 @@ Edit D2R preset environments in Unity. *A purchased copy of D2R is required to a
 
 A video showing act1 edits: https://streamable.com/xbxe7i
 
+### Troubleshooting
+If you see errors like
+```log
+Assets\Scripts\SaveJson.cs(9,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?)
+Assets\Scripts\SaveJson.cs(10,7): error CS0246: The type or namespace name 'Newtonsoft' could not be found (are you missing a using directive or an assembly reference?)
+```
+Then the `Newtonsoft` package needs to be installed in Unity.  Install through Unity's Package Manager: in Unity’s top menu: Window > Package Manager > Search for package `Newtonsoft`. https://docs.unity3d.com/Packages/com.unity.package-manager-ui@2.1/manual/index.html  
+
+Thanks to `MilesTeg` from [d2mods.info](https://d2mods.info/forum/viewtopic.php?f=217&t=67238) for pointing this out.
+
 
 ## Config Data Paths
 Lines 16 and 17 in `SaveJson.cs` should be configured for your preset path and D2R data path
