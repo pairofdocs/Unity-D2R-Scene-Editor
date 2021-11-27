@@ -244,7 +244,7 @@ public class SaveJson : MonoBehaviour
             ((JArray)jsonpreset["dependencies"]["models"]).Add(JObject.Parse(modelpath_dict));
         }
         // write json
-        System.IO.File.WriteAllText(Application.dataPath + "/out_" + preset, jsonpreset.ToString());
+        System.IO.File.WriteAllText(Application.dataPath + "/" + preset, jsonpreset.ToString());
     }
     
     void AddModelToScene()
