@@ -41,11 +41,11 @@ public class MeshLoader : MonoBehaviour
 
             meshObj.transform.localScale = new Vector3(m.ExtendedData.VertexScale, m.ExtendedData.VertexScale, m.ExtendedData.VertexScale);
 
-            if (meshRenderer.material == null) meshRenderer.material = new Material(Shader.Find("Standard"));
-            meshRenderer.material.EnableKeyword("_NORMALMAP");
-            meshRenderer.material.EnableKeyword("_METALLICGLOSSMAP");
-            
             if (loadTextures == true) {
+                if (meshRenderer.material == null) meshRenderer.material = new Material(Shader.Find("Standard"));
+                meshRenderer.material.EnableKeyword("_NORMALMAP");
+                meshRenderer.material.EnableKeyword("_METALLICGLOSSMAP");
+
                 var texture = meshObj.AddComponent<TextureLoader>();
                 if (m.MaterialBindings.Count > 0) {
                     var albedo = m.MaterialBindings[0].Material?.Maps?.FirstOrDefault(map => map.Usage == "AlbedoTexture");

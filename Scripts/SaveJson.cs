@@ -14,12 +14,14 @@ using Newtonsoft.Json.Linq;
 public class SaveJson : MonoBehaviour
 {
     public string preset = "docktown3.json";                 // Change this to be the json preset that is edited
-    public static string d2rDataPath = "D:/D2R - beta/";     // Change this to where your D2R data is extracted (casc storage)
+    public static string d2rDataPath = "D:/Diablo II Resurrected/";     // Change this to where your D2R data is extracted (casc storage)
     public string lastModlPath;
     public bool loadTextures = true;                         // Set this to false to avoid loading textures. Not loading textures may make Unity load scenes faster
+    public bool modelQualityHigh = true;                     // Set this to false to load lower quality models. NOTE: when modelQualityHigh is false, loadTextures should be set to false as well to avoid LSLib errors
+    public string lodmodel = "_lod0.model";
     public JObject entsJsons = new JObject();
     public JObject jsondata;
-        
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class SaveJson : MonoBehaviour
         jsondata = JObject.Parse(File.ReadAllText(Application.dataPath + "/" + preset));
         // json documentation https://www.newtonsoft.com/json/help/html/ModifyJson.htm
         JArray ents = (JArray)jsondata["entities"];   // ** TODO:  can consilidate  entsJsons and ents vars
+        if (!modelQualityHigh) lodmodel = "_lod4.model";
 
         foreach(JObject ob in ents) {
             string entname = (string)ob["name"];
@@ -48,7 +51,7 @@ public class SaveJson : MonoBehaviour
                     try {
                         // Load mesh for model   // "path": "data/hd/env/model/act1/outdoors/act1_outdoors_props/waypoint01.model"
                         string fullpath = d2rDataPath + modelfile;
-                        fullpath = fullpath.Replace(".model", "_lod0.model");   // append _lod3 to model basename.      **NOTE:** was only able to load lod0.model
+                        fullpath = fullpath.Replace(".model", lodmodel);   // append _lod3 to model basename.      **NOTE:** was only able to load lod0.model
                         
                         var mesh = modelObj.AddComponent<MeshLoader>();                               // add component
                         var root = LSLib.Granny.GR2Utils.LoadModel(fullpath);  
@@ -65,7 +68,7 @@ public class SaveJson : MonoBehaviour
                     modelfile = (string) comp["variations"][0]["filename"];    // e.g. data/hd/env/model/act1/outdoors/act1_outdoors_stonewalls/l_wall01.model
                     // Load mesh for model   // "path": "data/hd/env/model/act1/outdoors/act1_outdoors_props/waypoint01.model"
                     string fullpath = d2rDataPath + modelfile;
-                    fullpath = fullpath.Replace(".model", "_lod0.model");   // append _lod3 to model basename
+                    fullpath = fullpath.Replace(".model", lodmodel);   // append _lod3 to model basename
                     
                     var mesh = modelObj.AddComponent<MeshLoader>();                               // add component
                     var root = LSLib.Granny.GR2Utils.LoadModel(fullpath);  
@@ -170,7 +173,7 @@ public class SaveJson : MonoBehaviour
         for(int i = 0; i < gobjs.Length; i++) {
             if (gobjs[i].GetComponents<MeshLoader>().Length != 0) {
                 // Debug.Log("Contains MeshLoader:                      " + i);    // Can check for lowercase name or another identifier (maybe selectionBaeObj)
-                var fullp = (gobjs[i].GetComponent<MeshLoader>().GetFilePath()).Replace("_lod0.model", ".model");  // e.g. ship01_lod0.model  -->  ship01.model
+                var fullp = (gobjs[i].GetComponent<MeshLoader>().GetFilePath()).Replace(lodmodel, ".model");  // e.g. ship01_lod0.model  -->  ship01.model
                 string[] splitpath = fullp.Replace("Data/hd","data/hd").Split(new string[] {"data/hd"}, StringSplitOptions.None);
 
                 if ( entsJsons.ContainsKey(gobjs[i].name) ) {
@@ -241,18 +244,18 @@ public class SaveJson : MonoBehaviour
             ((JArray)jsonpreset["dependencies"]["models"]).Add(JObject.Parse(modelpath_dict));
         }
         // write json
-        System.IO.File.WriteAllText(Application.dataPath + "/" + preset, jsonpreset.ToString());
+        System.IO.File.WriteAllText(Application.dataPath + "/out_" + preset, jsonpreset.ToString());
     }
     
     void AddModelToScene()
     {
         // display file open window to chose filename.  keep a lastPath variable for faster model adding
         lastModlPath = EditorUtility.OpenFilePanel("Choose a model file", lastModlPath, "model");
-        // Ensure _lod0.model is loaded.  _lod1, 2,3,4 did not load with LSLib
-        lastModlPath = lastModlPath.Replace("_lod1.model", "_lod0.model").Replace("_lod2.model", "_lod0.model").Replace("_lod3.model", "_lod0.model").Replace("_lod4.model", "_lod0.model");
+        // Ensure _lod0.model is loaded.  _lod1, 2,3,4 did not load with LSLib (with textures. without textures they do load)
+        lastModlPath = lastModlPath.Replace("_lod0.model", lodmodel).Replace("_lod1.model", lodmodel).Replace("_lod2.model", lodmodel).Replace("_lod3.model", lodmodel).Replace("_lod4.model", lodmodel);
         // Debug.Log("lastModlPath:             " + lastModlPath);
         var strArr = lastModlPath.Split('/');
-        var modlname = strArr[strArr.Length-1].Replace("_lod0.model","");
+        var modlname = strArr[strArr.Length-1].Replace(lodmodel,"");
         // Check if model name already exists. output warning and suggestion to copy/paste the model in unity so the game object name can be unique
         var found = false;
         GameObject[] gobjs = (GameObject[])FindObjectsOfType(typeof(GameObject));
